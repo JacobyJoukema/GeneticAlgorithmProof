@@ -16,7 +16,7 @@ char []chrom;
   }
   public char genRandom ()
   {
-    return (char)((int) (Math.random()*160)+30);
+    return (char)((int)(Math.random()*94)+32);
   }
   public void mutate (float mut)
   {
@@ -40,7 +40,7 @@ char []chrom;
     }
     return fit;
   }
-  public char[] cross (CharCreature creat1, CharCreature creat2)
+  public static char[] cross (CharCreature creat1, CharCreature creat2)
   {
     char [] output = new char[creat1.chrom.length];
     for (int i = 0; i < output.length; i++)
@@ -59,5 +59,9 @@ char []chrom;
   public void print ()
   {
     System.out.println(new String (chrom));
+  }
+  public char [] getChrom ()
+  {
+    return chrom;
   }
 }

@@ -17,7 +17,6 @@ public class CharEvolution {
     this.key = key.toCharArray();
     this.gen = 0;
     creatures = new CharCreature [pop];
-    bestCreature = creatures[0];
     init();
   }
   public void init ()
@@ -26,19 +25,20 @@ public class CharEvolution {
     {
       creatures[i] = new CharCreature(key.length);
     }
-		bestCreature = creatures[0];
+		bestCreature = new CharCreature(creatures[0].getChrom());
   }
   public void evolve ()
   {
     while (true)
     {
+			gen++;
       printInfo();
       newGen(select());
     }
   }
   protected void newGen (int [] ind)
   {
-    char [] child = creatures[0].cross(creatures[ind[0]], creatures[ind[1]]);
+    char [] child = CharCreature.cross(creatures[ind[0]], creatures[ind[1]]);
     for (int i = 0; i < creatures.length;i++)
     {
       creatures[i] = new CharCreature(child);
