@@ -1,29 +1,30 @@
 package creatures;
 
-public class CharCreature implements Creature {
+public class CharCreature {
+char []chrom;
   public CharCreature (char [] chrom)
   {
     this.chrom = chrom;
   }
   public CharCreature (int len)
   {
-    chrom = char [len];
+    chrom = new char [len];
     for (int i = 0; i < chrom.length; i++)
     {
-      char[i] = genRandom;
+      chrom [i] = genRandom();
     }
   }
-  private char genRandom ()
+  public char genRandom ()
   {
-    char randChar = char(int (Math.random()*160)+30);
+    return (char)((int) (Math.random()*160)+30);
   }
-  public mutate (float mut)
+  public void mutate (float mut)
   {
     for (int i = 0; i < chrom.length; i++)
     {
       if (Math.random()<mut)
       {
-        chrom[i] = randChar;
+        chrom[i] = genRandom();
       }
     }
   }
@@ -39,20 +40,21 @@ public class CharCreature implements Creature {
     }
     return fit;
   }
-  public static char[] cross (CharCreature creat1, CharCreature creat2)
+  public char[] cross (CharCreature creat1, CharCreature creat2)
   {
     char [] output = new char[creat1.chrom.length];
     for (int i = 0; i < output.length; i++)
     {
       if (i < output.length/2)
       {
-        output[i] = creat1[i];
+        output[i] = creat1.chrom[i];
       }
       else
       {
-        output[i] = creat2[i];
+        output[i] = creat2.chrom[i];
       }
     }
+    return output;
   }
   public void print ()
   {

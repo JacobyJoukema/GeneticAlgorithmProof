@@ -10,9 +10,9 @@ default: compile run
 
 compile: creatures evolution start
 
-creatures: src/creatures/Creature.class
+creatures: src/creatures/CharCreature.class
 
-evolution: src/evolution/Genetic.class
+evolution: src/evolution/CharEvolution.class
 
 start: src/start/Main.class
 

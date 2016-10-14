@@ -2,7 +2,13 @@ package evolution;
 
 import creatures.*;
 
-public CharEvolution implements Genetic {
+public class CharEvolution {
+	  float bestFit;
+	  int gen;
+	  int pop;
+	  float mut;
+	  CharCreature [] creatures;
+	  CharCreature bestCreature;
   protected char [] key;
   public CharEvolution (int pop, float mut, String key)
   {
@@ -11,10 +17,10 @@ public CharEvolution implements Genetic {
     this.key = key.toCharArray();
     this.gen = 0;
     creatures = new CharCreature [pop];
-    bestCreature = creatures[0]
+    bestCreature = creatures[0];
     init();
   }
-  protected void init ()
+  public void init ()
   {
     for (int i = 0; i < pop; i++)
     {
@@ -25,39 +31,40 @@ public CharEvolution implements Genetic {
   {
     while (true)
     {
-      printInfo()
-      newGen(select())
+      printInfo();
+      newGen(select());
     }
   }
   protected void newGen (int [] ind)
   {
-    char [] child = CharCreature.cross(creature[ind[0]], creature[ind[1]])
-    for (int i = 0; i < chrom.length;i++)
+    char [] child = creatures[0].cross(creatures[ind[0]], creatures[ind[1]]);
+    for (int i = 0; i < creatures.length;i++)
     {
-      chrom[i] = new CharCreature(child);
-      chrom[i].mutate(mut);
+      creatures[i] = new CharCreature(child);
+      creatures[i].mutate(mut);
     }
   }
-  protected int [] select ()
+  public int [] select ()
   {
-    int hi1 = 0;
-    int hi2 = 0;
+	float fit = 0;
+    float hi1 = 0;
+    float hi2 = 0;
     int ind [] = new int[2];
-    int ind[0] = 0;
-    int ind[1] = 0;
-    for (int i = 0; i < chrom.length; i++)
+    ind[0] = 0;
+    ind[1] = 0;
+    for (int i = 0; i < creatures.length; i++)
     {
-      fit = chrom[i].fitness();
-      if (hi < fit)
+      fit = creatures[i].evaluate(key);
+      if (hi1 < fit)
       {
         ind[1] = ind[0];
-        ind[0] = fit;
-        hi1 = ind[0];
-        hi2 = ind[1];
+        ind[0] = i;
+        hi2 = hi1;
+        hi1 = fit;
       }
       else if (hi2 < fit)
       {
-        ind[1] = fit;
+        ind[1] = i;
         hi2 = fit;
       }
     }
@@ -71,11 +78,11 @@ public CharEvolution implements Genetic {
   public void printInfo ()
   {
     System.out.println ("Gen: " + gen);
-    for (int i = 0; i < chrom.length; i++)
+    for (int i = 0; i < creatures.length; i++)
     {
       creatures[i].print();
     }
-    System.out.println ("---------------------------------")
+    System.out.println ("---------------------------------");
     System.out.println("Best Fitness: " +bestFit);
     bestCreature.print();
   }
