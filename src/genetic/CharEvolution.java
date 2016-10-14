@@ -9,6 +9,7 @@ public class CharEvolution {
 	float mut;
   CharCreature [] creatures;
 	CharCreature bestCreature;
+	boolean correct;
   protected char [] key;
 
   public CharEvolution (int pop, float mut, String key)
@@ -31,19 +32,24 @@ public class CharEvolution {
   }
   public void evolve ()
   {
-    while (true)
+		int cnt = 0;
+    while (!correct)
     {
 			gen++;
       newGen(select());
 			printInfo();
+			cnt++;
     }
+		System.out.println("*********************************************");
+		System.out.println("Evolved to Key After " + gen + " Generations");
+		System.out.println("Correct Key: " + new String (bestCreature.getChrom()));
   }
   protected void newGen (int [] ind)
   {
     char [] child = CharCreature.cross(creatures[ind[0]].getChrom(), creatures[ind[1]].getChrom());
     for (int i = 0; i < creatures.length;i++)
     {
-      creatures[i] = new CharCreature(child);
+      creatures[i] = new CharCreature(child.clone());
       creatures[i].mutate(mut);
     }
   }
@@ -75,6 +81,7 @@ public class CharEvolution {
     {
       bestFit = hi1;
       bestCreature = new CharCreature (creatures[ind[0]].getChrom());
+			if (checkBest()) correct = true;
     }
     return ind;
   }
@@ -90,4 +97,18 @@ public class CharEvolution {
     System.out.println("Best Fitness: " +bestFit);
     bestCreature.print();
   }
+	public boolean checkBest ()
+	{
+		boolean right = true;
+		char [] bestChrom = bestCreature.getChrom().clone();
+		for (int i = 0; i < key.length; i++)
+		{
+			if (key[i] != bestChrom[i])
+			{
+				right = false;
+				break;
+			}
+		}
+		return right;
+	}
 }
