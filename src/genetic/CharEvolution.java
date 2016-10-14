@@ -1,6 +1,6 @@
-package evolution;
+package genetic;
 
-import creatures.*;
+import creatures.CharCreature;
 
 public class CharEvolution {
 	  float bestFit;
