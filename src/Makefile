@@ -8,7 +8,7 @@ CH = chmod u+x
 
 default: compile run
 
-compile: src/CharCreature.class src/CharEvolution.class src/Main.class
+compile: creatures/CharCreature.class genetic/CharEvolution.class start/Main.class
 
 run:
 	$(CH) run.sh

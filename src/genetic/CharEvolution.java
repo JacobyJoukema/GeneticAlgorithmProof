@@ -26,6 +26,7 @@ public class CharEvolution {
     {
       creatures[i] = new CharCreature(key.length);
     }
+		bestCreature = creatures[0];
   }
   public void evolve ()
   {

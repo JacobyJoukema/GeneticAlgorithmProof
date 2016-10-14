@@ -1,0 +1,2 @@
+make
+java start/Main
