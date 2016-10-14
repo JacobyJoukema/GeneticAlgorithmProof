@@ -17,7 +17,7 @@ public interface Creature {
   {
 
   }
-  public static void mate (Object, Object)
+  public static Object [] cross (Object, Object)
   {
 
   }

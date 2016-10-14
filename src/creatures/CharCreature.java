@@ -1,9 +1,9 @@
 package creatures;
 
 public class CharCreature implements Creature {
-  public CharCreature (char [] creat)
+  public CharCreature (char [] chrom)
   {
-    
+    this.chrom = chrom;
   }
   public CharCreature (int len)
   {
@@ -39,8 +39,23 @@ public class CharCreature implements Creature {
     }
     return fit;
   }
-  public static CharCreature mate (CharCreature creat1, CharCreature creat2)
+  public static char[] cross (CharCreature creat1, CharCreature creat2)
   {
-
+    char [] output = new char[creat1.chrom.length];
+    for (int i = 0; i < output.length; i++)
+    {
+      if (i < output.length/2)
+      {
+        output[i] = creat1[i];
+      }
+      else
+      {
+        output[i] = creat2[i];
+      }
+    }
+  }
+  public void print ()
+  {
+    System.out.println(new String (chrom));
   }
 }

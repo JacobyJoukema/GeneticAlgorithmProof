@@ -3,13 +3,15 @@ package evolution;
 import creatures.*;
 
 public CharEvolution implements Genetic {
-  protected String key;
+  protected char [] key;
   public CharEvolution (int pop, float mut, String key)
   {
     this.pop = pop;
     this.mut = mut;
-    this.key = key;
+    this.key = key.toCharArray();
+    this.gen = 0;
     creatures = new CharCreature [pop];
+    bestCreature = creatures[0]
     init();
   }
   protected void init ()
@@ -23,17 +25,23 @@ public CharEvolution implements Genetic {
   {
     while (true)
     {
-      cross(evaluate())
+      printInfo()
+      newGen(select())
     }
   }
-  protected void cross (int [] ind)
+  protected void newGen (int [] ind)
   {
-    
+    char [] child = CharCreature.cross(creature[ind[0]], creature[ind[1]])
+    for (int i = 0; i < chrom.length;i++)
+    {
+      chrom[i] = new CharCreature(child);
+      chrom[i].mutate(mut);
+    }
   }
-  protected CharCreature [] select ()
+  protected int [] select ()
   {
     int hi1 = 0;
-    int hi2 = 0
+    int hi2 = 0;
     int ind [] = new int[2];
     int ind[0] = 0;
     int ind[1] = 0;
@@ -53,14 +61,22 @@ public CharEvolution implements Genetic {
         hi2 = fit;
       }
     }
+    if (hi1 > bestFit)
+    {
+      bestFit = hi1;
+      bestCreature = creatures[ind[0]];
+    }
     return ind;
   }
-  protected void mutateGeneration ()
+  public void printInfo ()
   {
+    System.out.println ("Gen: " + gen);
     for (int i = 0; i < chrom.length; i++)
     {
-      chrom[i].mutate(mut);
+      creatures[i].print();
     }
+    System.out.println ("---------------------------------")
+    System.out.println("Best Fitness: " +bestFit);
+    bestCreature.print();
   }
-
 }

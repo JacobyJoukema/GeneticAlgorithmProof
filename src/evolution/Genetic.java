@@ -7,6 +7,7 @@ public interface Genetic
   protected int pop;
   protected float mut;
   protected Object [] creatures;
+  protected Object bestCreature;
 
   public Genetic (int pop, float mut)
   {
@@ -24,12 +25,9 @@ public interface Genetic
   {
 
   }
-  protected void cross (Object [] parents)
+  protected void newGen (Object [] parents)
   {
 
   }
-  protected void mutateGeneration ()
-  {
 
-  }
 }
