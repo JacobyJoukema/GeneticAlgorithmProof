@@ -5,7 +5,7 @@ import creatures.CharCreature;
 
 public class Main {
   public static void main(String[] args) {
-    CharEvolution evolution = new CharEvolution (50, (float)0.05, "Evolving Genetic Algorithm By Jacoby Joukema");
+    CharEvolution evolution = new CharEvolution (50, (float)0.02, "Evolving Genetic Algorithm By Jacoby Joukema! :)");
     evolution.evolve();
     /*char [] test = {'a','b','c','d','e','f','g'};
     char [] test2 = {'1','2','3','4','5','6','6'};
