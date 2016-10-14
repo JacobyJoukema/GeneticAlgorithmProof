@@ -1,6 +1,10 @@
 package creatures;
 
 public class CharCreature implements Creature {
+  public CharCreature (char [] creat)
+  {
+    
+  }
   public CharCreature (int len)
   {
     chrom = char [len];
@@ -9,9 +13,9 @@ public class CharCreature implements Creature {
       char[i] = genRandom;
     }
   }
-  public char genRandom ()
+  private char genRandom ()
   {
-    char randChar = char(int (Math.random()*137)+40);
+    char randChar = char(int (Math.random()*160)+30);
   }
   public mutate (float mut)
   {
@@ -23,7 +27,7 @@ public class CharCreature implements Creature {
       }
     }
   }
-  public float fitness (char [] metric)
+  public float evaluate (char [] metric)
   {
     float fit = 0;
     for (int i = 0; i < chrom.length; i++)
@@ -34,5 +38,9 @@ public class CharCreature implements Creature {
       }
     }
     return fit;
+  }
+  public static CharCreature mate (CharCreature creat1, CharCreature creat2)
+  {
+
   }
 }

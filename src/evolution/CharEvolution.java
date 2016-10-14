@@ -26,9 +26,41 @@ public CharEvolution implements Genetic {
       cross(evaluate())
     }
   }
-  protected void cross (Object [] parents)
+  protected void cross (int [] ind)
   {
     
+  }
+  protected CharCreature [] select ()
+  {
+    int hi1 = 0;
+    int hi2 = 0
+    int ind [] = new int[2];
+    int ind[0] = 0;
+    int ind[1] = 0;
+    for (int i = 0; i < chrom.length; i++)
+    {
+      fit = chrom[i].fitness();
+      if (hi < fit)
+      {
+        ind[1] = ind[0];
+        ind[0] = fit;
+        hi1 = ind[0];
+        hi2 = ind[1];
+      }
+      else if (hi2 < fit)
+      {
+        ind[1] = fit;
+        hi2 = fit;
+      }
+    }
+    return ind;
+  }
+  protected void mutateGeneration ()
+  {
+    for (int i = 0; i < chrom.length; i++)
+    {
+      chrom[i].mutate(mut);
+    }
   }
 
 }

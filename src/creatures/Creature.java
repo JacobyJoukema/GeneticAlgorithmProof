@@ -13,7 +13,11 @@ public interface Creature {
   {
 
   }
-  public float fitness (Object metric)
+  public float evaluate (Object metric)
+  {
+
+  }
+  public static void mate (Object, Object)
   {
 
   }

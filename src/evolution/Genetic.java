@@ -20,7 +20,7 @@ public interface Genetic
   {
 
   }
-  protected Object [] evalute ()
+  protected Object [] select ()
   {
 
   }
@@ -28,7 +28,7 @@ public interface Genetic
   {
 
   }
-  protected void mutate ()
+  protected void mutateGeneration ()
   {
 
   }
