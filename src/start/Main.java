@@ -1,3 +1,5 @@
+package start;
+
 import genetic.*;
 import creatures.*;
 

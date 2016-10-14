@@ -6,7 +6,7 @@ public interface Genetic
   protected int gen;
   protected int pop;
   protected float mut;
-  protected Object [] chroms;
+  protected Object [] creatures;
 
   public Genetic (int pop, float mut)
   {
