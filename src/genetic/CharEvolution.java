@@ -24,15 +24,17 @@ public class CharEvolution {
     for (int i = 0; i < pop; i++)
     {
       creatures[i] = new CharCreature(key.length);
+
     }
 		bestCreature = new CharCreature(creatures[0].getChrom());
+		printInfo();
   }
   public void evolve ()
   {
     while (true)
     {
 			gen++;
-      printInfo();
+      //printInfo();
       newGen(select());
     }
   }
@@ -43,6 +45,7 @@ public class CharEvolution {
     {
       creatures[i] = new CharCreature(child);
       creatures[i].mutate(mut);
+			//creatures[i].print();
     }
   }
   public int [] select ()
