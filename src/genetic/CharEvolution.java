@@ -3,13 +3,14 @@ package genetic;
 import creatures.CharCreature;
 
 public class CharEvolution {
-	  float bestFit;
-	  int gen;
-	  int pop;
-	  float mut;
-	  CharCreature [] creatures;
-	  CharCreature bestCreature;
+	float bestFit;
+	int gen;
+	int pop;
+	float mut;
+  CharCreature [] creatures;
+	CharCreature bestCreature;
   protected char [] key;
+
   public CharEvolution (int pop, float mut, String key)
   {
     this.pop = pop;
@@ -24,33 +25,31 @@ public class CharEvolution {
     for (int i = 0; i < pop; i++)
     {
       creatures[i] = new CharCreature(key.length);
-
     }
 		bestCreature = new CharCreature(creatures[0].getChrom());
-		printInfo();
+
   }
   public void evolve ()
   {
     while (true)
     {
 			gen++;
-      //printInfo();
       newGen(select());
+			printInfo();
     }
   }
   protected void newGen (int [] ind)
   {
-    char [] child = CharCreature.cross(creatures[ind[0]], creatures[ind[1]]);
+    char [] child = CharCreature.cross(creatures[ind[0]].getChrom(), creatures[ind[1]].getChrom());
     for (int i = 0; i < creatures.length;i++)
     {
       creatures[i] = new CharCreature(child);
       creatures[i].mutate(mut);
-			//creatures[i].print();
     }
   }
   public int [] select ()
   {
-	float fit = 0;
+		float fit = 0;
     float hi1 = 0;
     float hi2 = 0;
     int ind [] = new int[2];
@@ -75,7 +74,7 @@ public class CharEvolution {
     if (hi1 > bestFit)
     {
       bestFit = hi1;
-      bestCreature = creatures[ind[0]];
+      bestCreature = new CharCreature (creatures[ind[0]].getChrom());
     }
     return ind;
   }
@@ -85,6 +84,7 @@ public class CharEvolution {
     for (int i = 0; i < creatures.length; i++)
     {
       creatures[i].print();
+			//System.out.println(creatures[i]);
     }
     System.out.println ("---------------------------------");
     System.out.println("Best Fitness: " +bestFit);

@@ -1,7 +1,7 @@
 package creatures;
 
 public class CharCreature {
-char []chrom;
+private char [] chrom;
   public CharCreature (char [] chrom)
   {
     this.chrom = chrom;
@@ -40,18 +40,20 @@ char []chrom;
     }
     return fit;
   }
-  public static char[] cross (CharCreature creat1, CharCreature creat2)
+  public static char[] cross (char [] chrom1, char [] chrom2)
   {
-    char [] output = new char[creat1.chrom.length];
+    int low = (int) (Math.random()*chrom1.length/2);
+    int hi = low+(chrom1.length/2);
+    char [] output = new char[chrom1.length];
     for (int i = 0; i < output.length; i++)
     {
-      if (i < output.length/2)
+      if (i < hi && i >= low)
       {
-        output[i] = creat1.chrom[i];
+        output[i] = chrom1[i];
       }
       else
       {
-        output[i] = creat2.chrom[i];
+        output[i] = chrom2[i];
       }
     }
     return output;
