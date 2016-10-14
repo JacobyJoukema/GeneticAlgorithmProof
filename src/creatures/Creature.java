@@ -5,11 +5,15 @@ public interface Creature {
   {
 
   }
-  public genRandom ()
+  public Object genRandom ()
   {
 
   }
-  public mutate (float mut)
+  public void mutate (float mut)
+  {
+
+  }
+  public float fitness (Object metric)
   {
 
   }

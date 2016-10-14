@@ -2,7 +2,7 @@ package evolution;
 
 public interface Genetic
 {
-  protected float fit; //Fitness
+  protected float bestFit;
   protected int gen;
   protected int pop;
   protected float mut;
@@ -16,15 +16,15 @@ public interface Genetic
   {
 
   }
-  protected void evolve ()
+  public void evolve ()
   {
 
   }
-  protected void evalute ()
+  protected Object [] evalute ()
   {
 
   }
-  protected void cross ()
+  protected void cross (Object [] parents)
   {
 
   }

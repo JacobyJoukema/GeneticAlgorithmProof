@@ -23,4 +23,16 @@ public class CharCreature implements Creature {
       }
     }
   }
+  public float fitness (char [] metric)
+  {
+    float fit = 0;
+    for (int i = 0; i < chrom.length; i++)
+    {
+      if (metric[i] == chrom[i])
+      {
+        fit+=1;
+      }
+    }
+    return fit;
+  }
 }
