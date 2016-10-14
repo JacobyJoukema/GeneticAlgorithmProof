@@ -38,6 +38,7 @@ private char [] chrom;
         fit+=1;
       }
     }
+    fit = fit/(chrom.length*chrom.length);//Add or remove to see linear vs exponetial fitness function
     return fit;
   }
   public static char[] cross (char [] chrom1, char [] chrom2)
